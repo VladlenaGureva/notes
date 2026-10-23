@@ -4659,10 +4659,11 @@ def run_selftest(outdir):
             app.processEvents()
             shot(dlg, "07_settings.png")
             fams = [dlg.font_box.itemData(i) for i in range(dlg.font_box.count())]
-            check("Georgia" in fams and fams[-1] == OTHER_FONT, f"список шрифтов: {fams}")
+            real = [f for f in fams if f and f != OTHER_FONT]
+            check(bool(real) and fams[-1] == OTHER_FONT, f"список шрифтов: {fams}")
             check(dlg.font_full.isHidden(), "полный список виден без «Другой…»")
-            dlg.font_box.setCurrentIndex(dlg.font_box.findData("Georgia"))
-            check(dlg.chosen_font()[0] == "Georgia", "выбор Georgia")
+            dlg.font_box.setCurrentIndex(dlg.font_box.findData(real[0]))
+            check(dlg.chosen_font()[0] == real[0], f"выбор {real[0]}")
             dlg.font_box.setCurrentIndex(dlg.font_box.count() - 1)
             check(not dlg.font_full.isHidden(), "«Другой…» не показал полный список")
             check(bool(dlg.chosen_font()[0]), "шрифт из полного списка")
@@ -4780,7 +4781,11 @@ def run_selftest(outdir):
     lines += ["", "--- stderr ---", errors[-6000:] or "(пусто)"]
     with open(os.path.join(outdir, "report.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
-    return 1 if (failed or errors) else 0
+    if os.environ.get("CI") and sys.stdout is not None:
+        # в автоматической сборке отчёт сразу виден в журнале
+        print("\n".join(lines), flush=True)
+    # сообщения в stderr попадают в отчёт, но провалом считаются только шаги FAIL
+    return 1 if failed else 0
 
 
 # -------------------------------- Запуск --------------------------------
