@@ -2,7 +2,7 @@
 
 [Русский](README.md) · **English**
 
-A day-by-day notes board for Windows, macOS, Linux and Android: torn paper on kraft, a calendar, reminder notifications, repeating notes and Yandex Calendar import.
+**Notes** is an app for personal and work notes with built-in Yandex Calendar integration and a reminder system. Each note belongs to its day, recurring tasks appear on the board on their own, and a notification reminds you of what matters. It runs on Windows, macOS, Linux and Android and is styled as a kraft-paper board with stickers.
 
 | System | File in Releases |
 |---|---|
