@@ -1,0 +1,14 @@
+{
+  "appId": "app.notes.paper",
+  "appName": "Заметки",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#B39A79"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_note",
+      "iconColor": "#74503A"
+    }
+  }
+}
