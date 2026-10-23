@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Заметки
+Name[en]=Notes
+Comment=Заметки по дням
+Comment[en]=Day-by-day notes
+Exec="@DIR@/Notes/Notes"
+Icon=@DIR@/notes.png
+Terminal=false
+Categories=Office;Utility;
+StartupWMClass=Stickies
